@@ -40,12 +40,14 @@ export default function InventoryPage() {
         <div className="flex-1 space-y-6 p-8 pt-6">
             {/* Header */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="text-3xl font-bold tracking-tight">{t("title")}</h2>
-                <AddWarehouseDialog />
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{t("title")}</h2>
+                <div className="w-full sm:w-auto">
+                    <AddWarehouseDialog />
+                </div>
             </div>
 
             {/* Stats Cards */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 <StatsCard title={t("stats.warehouses")} value="6" icon={Warehouse} isLoading={isLoading} />
                 <StatsCard title={t("stats.items")} value="1,250" icon={PackageOpen} isLoading={isLoading} />
                 <StatsCard title={t("stats.low_stock")} value="5" icon={AlertTriangle} variant="destructive" isLoading={isLoading} />
@@ -60,9 +62,9 @@ export default function InventoryPage() {
                         className="pl-9 rtl:pr-9 rtl:pl-3"
                     />
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full md:w-auto">
                     <Select>
-                        <SelectTrigger className="w-[140px]">
+                        <SelectTrigger className="flex-1 md:w-[140px]">
                             <Filter className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
                             <SelectValue placeholder={t("toolbar.filter")} />
                         </SelectTrigger>
@@ -72,7 +74,7 @@ export default function InventoryPage() {
                         </SelectContent>
                     </Select>
                     <Select>
-                        <SelectTrigger className="w-[140px]">
+                        <SelectTrigger className="flex-1 md:w-[140px]">
                             <SortAsc className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
                             <SelectValue placeholder={t("toolbar.sort")} />
                         </SelectTrigger>
@@ -86,7 +88,7 @@ export default function InventoryPage() {
             </div>
 
             {/* Warehouses Grid */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {isLoading
                     ? Array.from({ length: 6 }).map((_, i) => (
                         <Card key={i} className="overflow-hidden">
