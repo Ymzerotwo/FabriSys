@@ -1,0 +1,92 @@
+{
+    "HomePage": {
+        "title": "Streamline Your <primary>Clothing Production</primary> with FabriSys",
+        "subtitle": "A comprehensive management system designed for modern garment factories. Track inventory, manage orders, and optimize production lines in real-time.",
+        "badge": "🚀 The Future of Manufacturing",
+        "getStarted": "Get Started",
+        "learnMore": "Learn More",
+        "features": {
+            "inventory": {
+                "title": "Inventory Management",
+                "desc": "Real-time tracking of fabrics and materials."
+            },
+            "production": {
+                "title": "Production Line",
+                "desc": "Monitor efficiency and bottlenecks instantly."
+            },
+            "orders": {
+                "title": "Order Processing",
+                "desc": "Seamless workflow from order to delivery."
+            }
+        }
+    },
+    "Common": {
+        "features": "Features",
+        "pricing": "Pricing",
+        "fabrisys": "FabriSys",
+        "footer": "© {year} FabriSys. All rights reserved."
+    },
+    "Navigation": {
+        "dashboard": "Dashboard",
+        "inventory": "Inventory",
+        "suppliers": "Suppliers",
+        "invoices": "Invoices",
+        "statistics": "Statistics"
+    },
+    "Errors": {
+        "generic": "Something went wrong!",
+        "description": "We encountered an unexpected error while processing your request.",
+        "tryAgain": "Try Again",
+        "goHome": "Go Home",
+        "notFoundTitle": "Page Not Found",
+        "notFoundDesc": "Sorry, we couldn't find the page you're looking for.",
+        "returnHome": "Return to FabriSys"
+    },
+    "Loading": {
+        "text": "Loading FabriSys..."
+    },
+    "Validation": {
+        "required": "This field is required",
+        "email_required": "Email is required",
+        "invalid_email": "Invalid email address format",
+        "min_length": "Must be at least {min} characters",
+        "max_length": "Must be at most {max} characters",
+        "integer_only": "Must be a whole number",
+        "number_only": "Must be a valid number"
+    },
+    "Inventory": {
+        "title": "Inventory Management",
+        "add_warehouse": "Add Warehouse",
+        "stats": {
+            "warehouses": "Total Warehouses",
+            "items": "Total Items",
+            "low_stock": "Low Stock Alerts"
+        },
+        "toolbar": {
+            "search_placeholder": "Search by warehouse name or code...",
+            "filter": "Filter",
+            "sort": "Sort",
+            "active": "Active",
+            "inactive": "Inactive",
+            "newest": "Newest",
+            "oldest": "Oldest",
+            "most_full": "Most Full"
+        },
+        "warehouse": {
+            "capacity": "Capacity",
+            "storekeeper": "Storekeeper"
+        },
+        "form": {
+            "add_title": "Add New Warehouse",
+            "name": "Warehouse Name",
+            "code": "Warehouse Code",
+            "location": "Location",
+            "categories": "Stored Items Categories",
+            "fabric": "Fabric",
+            "accessories": "Accessories",
+            "finished": "Finished Product",
+            "cancel": "Cancel",
+            "save": "Save"
+        }
+    }
+}
