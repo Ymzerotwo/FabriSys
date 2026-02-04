@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Progress } from "@/components/ui/progress"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Plus, Warehouse, PackageOpen, AlertTriangle, Search, Filter, SortAsc, type LucideIcon } from "lucide-react"
+import { Warehouse, PackageOpen, AlertTriangle, Search, Filter, SortAsc, type LucideIcon } from "lucide-react"
 
 // Mock Data
 const MOCK_WAREHOUSES = [
