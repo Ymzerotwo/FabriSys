@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { AlertCircle, RotateCcw, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export default function Error({
     error,
@@ -11,6 +12,8 @@ export default function Error({
     error: Error & { digest?: string };
     reset: () => void;
 }) {
+    const t = useTranslations('Errors');
+
     useEffect(() => {
         console.error(error);
     }, [error]);
@@ -24,10 +27,10 @@ export default function Error({
 
                 <div className="space-y-2">
                     <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                        Something went wrong!
+                        {t('generic')}
                     </h2>
                     <p className="text-sm text-muted-foreground">
-                        We encountered an unexpected error while processing your request.
+                        {t('description')}
                         <br />
                         <span className="text-xs opacity-70">Error Code: {error.digest || 'Unknown'}</span>
                     </p>
@@ -35,8 +38,8 @@ export default function Error({
 
                 <div className="flex w-full flex-col gap-3 sm:flex-row">
                     <Button onClick={() => reset()} className="flex-1 gap-2" size="lg">
-                        <RotateCcw className="h-4 w-4" />
-                        Try Again
+                        <RotateCcw className="h-4 w-4 rtl:flip" />
+                        {t('tryAgain')}
                     </Button>
                     <Button
                         variant="outline"
@@ -45,7 +48,7 @@ export default function Error({
                         size="lg"
                     >
                         <Home className="h-4 w-4" />
-                        Go Home
+                        {t('goHome')}
                     </Button>
                 </div>
             </div>

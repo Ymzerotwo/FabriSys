@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { FileQuestion, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export default function NotFound() {
+    const t = useTranslations('Errors');
     return (
         <div className="flex h-screen w-full flex-col items-center justify-center bg-background px-4 text-center">
             <div className="flex max-w-md flex-col items-center gap-6">
@@ -16,17 +20,17 @@ export default function NotFound() {
                 <div className="space-y-2">
                     <h1 className="text-6xl font-black tracking-tight text-primary/20">404</h1>
                     <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                        Page Not Found
+                        {t('notFoundTitle')}
                     </h2>
                     <p className="text-muted-foreground">
-                        Sorry, we couldn&apos;t find the page you&apos;re looking for. It might have been removed, renamed, or doesn&apos;t exist.
+                        {t('notFoundDesc')}
                     </p>
                 </div>
 
                 <Button asChild size="lg" className="gap-2">
                     <Link href="/">
-                        <ArrowLeft className="h-4 w-4" />
-                        Return to FabriSys
+                        <ArrowLeft className="h-4 w-4 rtl:flip" />
+                        {t('returnHome')}
                     </Link>
                 </Button>
             </div>

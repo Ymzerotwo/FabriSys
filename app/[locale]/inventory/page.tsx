@@ -1,40 +1,25 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Progress } from "@/components/ui/progress"
 import { Skeleton } from "@/components/ui/skeleton"
+import { Badge } from "@/components/ui/badge"
 import { Warehouse, PackageOpen, AlertTriangle, Search, Filter, SortAsc, type LucideIcon } from "lucide-react"
-
-// Mock Data
-const MOCK_WAREHOUSES = [
-    { id: 1, name: "Main Warehouse", capacity: 85, storekeeper: "Ahmed Hassan", status: "Active" },
-    { id: 2, name: "Raw Materials A", capacity: 45, storekeeper: "Mohamed Ali", status: "Active" },
-    { id: 3, name: "Logistics Hub", capacity: 12, storekeeper: "Sara Mahmoud", status: "Active" },
-    { id: 4, name: "Backup Storage", capacity: 5, storekeeper: "Khaled Omar", status: "Inactive" },
-    { id: 5, name: "North Branch", capacity: 65, storekeeper: "Mai Ezz", status: "Active" },
-    { id: 6, name: "South Branch", capacity: 92, storekeeper: "Ibrahim Adel", status: "Active" },
-]
+import { useLiveQuery } from "dexie-react-hooks"
+import { db } from "@/lib/db"
+import { Link } from "@/i18n/routing"
 
 import { AddWarehouseDialog } from "@/components/inventory/add-warehouse-dialog"
 
 export default function InventoryPage() {
     const t = useTranslations("Inventory")
-    const [isLoading, setIsLoading] = useState(true)
-    const [data, setData] = useState<typeof MOCK_WAREHOUSES>([])
 
-    // Simulate data fetching
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setData(MOCK_WAREHOUSES)
-            setIsLoading(false)
-        }, 2000)
-        return () => clearTimeout(timer)
-    }, [])
+    // Live query to fetch warehouses from Dexie
+    const warehouses = useLiveQuery(() => db.warehouses.toArray())
+    const isLoading = warehouses === undefined
 
     return (
         <div className="flex-1 space-y-6 p-8 pt-6">
@@ -46,11 +31,16 @@ export default function InventoryPage() {
                 </div>
             </div>
 
-            {/* Stats Cards */}
+            {/* Stats Cards - Currently static/mocked for counts as we transition */}
             <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                <StatsCard title={t("stats.warehouses")} value="6" icon={Warehouse} isLoading={isLoading} />
-                <StatsCard title={t("stats.items")} value="1,250" icon={PackageOpen} isLoading={isLoading} />
-                <StatsCard title={t("stats.low_stock")} value="5" icon={AlertTriangle} variant="destructive" isLoading={isLoading} />
+                <StatsCard
+                    title={t("stats.warehouses")}
+                    value={warehouses ? warehouses.length.toString() : "-"}
+                    icon={Warehouse}
+                    isLoading={isLoading}
+                />
+                <StatsCard title={t("stats.items")} value="0" icon={PackageOpen} isLoading={isLoading} />
+                <StatsCard title={t("stats.low_stock")} value="0" icon={AlertTriangle} variant="destructive" isLoading={isLoading} />
             </div>
 
             {/* Toolbar */}
@@ -81,7 +71,6 @@ export default function InventoryPage() {
                         <SelectContent>
                             <SelectItem value="newest">{t("toolbar.newest")}</SelectItem>
                             <SelectItem value="oldest">{t("toolbar.oldest")}</SelectItem>
-                            <SelectItem value="full">{t("toolbar.most_full")}</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
@@ -90,45 +79,52 @@ export default function InventoryPage() {
             {/* Warehouses Grid */}
             <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {isLoading
-                    ? Array.from({ length: 6 }).map((_, i) => (
+                    ? Array.from({ length: 4 }).map((_, i) => (
                         <Card key={i} className="overflow-hidden">
                             <CardHeader className="space-y-2">
                                 <Skeleton className="h-5 w-1/2" />
                             </CardHeader>
                             <CardContent className="space-y-4">
-                                <Skeleton className="h-2 w-full" />
-                                <div className="flex justify-between">
-                                    <Skeleton className="h-4 w-1/3" />
-                                    <Skeleton className="h-4 w-1/3" />
+                                <Skeleton className="h-4 w-1/3" />
+                                <div className="flex gap-2">
+                                    <Skeleton className="h-6 w-16" />
+                                    <Skeleton className="h-6 w-16" />
                                 </div>
                             </CardContent>
                         </Card>
                     ))
-                    : data.map((warehouse) => (
-                        <Card key={warehouse.id} className="group hover:border-primary transition-colors cursor-pointer">
-                            <CardHeader className="flex flex-row items-center justify-between pb-2">
-                                <CardTitle className="text-lg font-semibold truncate text-primary">
-                                    {warehouse.name}
-                                </CardTitle>
-                                <Warehouse className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between text-sm">
-                                        <span className="text-muted-foreground">{t("warehouse.capacity")}</span>
-                                        <span className={cn("font-medium", warehouse.capacity > 90 ? "text-destructive" : "")}>
-                                            {warehouse.capacity}%
-                                        </span>
+                    : warehouses?.map((warehouse) => (
+                        <Link key={warehouse.id} href={`/inventory/${warehouse.id}`} className="block">
+                            <Card className="group hover:border-primary transition-colors cursor-pointer h-full">
+                                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                                    <div className="space-y-1">
+                                        <CardTitle className="text-lg font-semibold truncate text-primary">
+                                            {warehouse.name}
+                                        </CardTitle>
+                                        <p className="text-xs text-muted-foreground">
+                                            {warehouse.code}
+                                        </p>
                                     </div>
-                                    <Progress value={warehouse.capacity} className="h-2" />
-                                </div>
-                                <div className="flex items-center justify-between text-sm pt-2 border-t">
-                                    <span className="text-muted-foreground">{t("warehouse.storekeeper")}</span>
-                                    <span>{warehouse.storekeeper}</span>
-                                </div>
-                            </CardContent>
-                        </Card>
+                                    <Warehouse className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="flex flex-wrap gap-2">
+                                        {warehouse.categories.map((cat) => (
+                                            <Badge key={cat} variant="secondary" className="text-xs">
+                                                {t(`form.${cat}`)}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     ))}
+
+                {!isLoading && warehouses?.length === 0 && (
+                    <div className="col-span-full py-12 text-center text-muted-foreground">
+                        No warehouses found. Add one to get started.
+                    </div>
+                )}
             </div>
         </div>
     )

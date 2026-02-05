@@ -31,7 +31,10 @@
         "inventory": "المخازن",
         "suppliers": "الموردين",
         "invoices": "الفواتير",
-        "statistics": "الإحصائيات"
+        "statistics": "الإحصائيات",
+        "developed_by": "تم التطوير بواسطة",
+        "version": "الإصدار",
+        "under_development": "قيد التطوير"
     },
     "Errors": {
         "generic": "حدث خطأ ما!",
@@ -60,6 +63,7 @@
         "stats": {
             "warehouses": "عدد المخازن",
             "items": "إجمالي الأصناف",
+            "total_quantity": "إجمالي الكمية",
             "low_stock": "تنبيهات النواقص"
         },
         "toolbar": {
@@ -86,7 +90,39 @@
             "accessories": "إكسسوارات",
             "finished": "منتج تام",
             "cancel": "إلغاء",
-            "save": "حفظ"
+            "save": "حفظ",
+            "details": "تفاصيل",
+            "add_item": "إضافة صنف جديد",
+            "sku": "الكود (SKU)",
+            "quantity": "الكمية",
+            "min_quantity": "الحد الأدنى",
+            "unit": "الوحدة",
+            "fabric_type": "نوع القماش",
+            "color": "اللون",
+            "width": "العرض",
+            "weight": "الوزن (GSM)",
+            "accessory_type": "نوع الإكسسوار",
+            "size": "المقاس",
+            "material": "المادة",
+            "price": "السعر",
+            "sort_by": "ترتيب حسب",
+            "sort_az": "الاسم (أ-ي)",
+            "sort_qty_asc": "الكمية (أقل-أكثر)",
+            "sort_qty_desc": "الكمية (أكثر-أقل)",
+            "sort_price_asc": "السعر (أقل-أكثر)",
+            "sort_price_desc": "السعر (أكثر-أقل)",
+            "sort_date_new": "التاريخ (الأحدث)",
+            "sort_date_old": "التاريخ (الأقدم)",
+            "filter_all": "الكل",
+            "filter_fabric": "أقمشة",
+            "filter_accessories": "إكسسوارات",
+            "search_placeholder": "بحث بالاسم أو الكود...",
+            "no_items": "لا توجد أصناف في هذا المخزن.",
+            "select_category": "اختر فئة الصنف"
+        },
+        "validation": {
+            "name_min": "الاسم يجب أن يكون حرفين على الأقل",
+            "categories_min": "يجب عليك اختيار عنصر واحد على الأقل"
         }
     }
 }

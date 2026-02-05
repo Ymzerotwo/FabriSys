@@ -13,16 +13,16 @@ import {
     BarChart3,
     ChevronLeft,
     ChevronRight,
-    Menu // Added Menu icon for mobile
+    Menu,
+    NotebookPen
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet" // Import Sheet components
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 
 export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
     const t = useTranslations('Navigation')
     const pathname = usePathname()
-    // State for Desktop Collapse
     const [isCollapsed, setIsCollapsed] = React.useState(false)
 
     const toggleSidebar = () => setIsCollapsed(!isCollapsed)
@@ -58,6 +58,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
             icon: BarChart3,
             variant: "ghost",
         },
+
     ]
 
     const sidebarItems = items.map((item, index) => {
@@ -84,17 +85,6 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
     // Desktop Sidebar
     return (
         <>
-            {/* Mobile Trigger - This should be placed in the Header usually, but if Sidebar wraps layout, we might need a different approach.
-                However, usually the Trigger is in the Navbar.
-                Since this component is <Sidebar /> and is placed in Layout aside the main content, 
-                we might need to export the MobileTrigger separately OR render it here if it's visible only on mobile.
-                
-                Actually, usually the layout has:
-                [DesktopSidebar (hidden on mobile)]
-                [MainContent]
-                   [Header (contains MobileMenuTrigger)]
-            */}
-
             <div
                 className={cn(
                     "hidden md:flex relative flex-col border-e bg-card transition-all duration-300",
@@ -125,9 +115,30 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
                         {sidebarItems}
                     </nav>
                 </div>
-            </div>
 
-            {/* We export the MobileSheet to be used in the Header */}
+                {/* Footer Info */}
+                {!isCollapsed && (
+                    <div className="p-4 border-t bg-muted/5 text-[10px] text-muted-foreground space-y-2">
+                        <div className="flex flex-col gap-1">
+                            <span className="opacity-70">{t('developed_by')}</span>
+                            <a
+                                href="https://ymzerotwo.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-semibold text-primary/80 hover:text-primary hover:underline transition-colors text-xs"
+                            >
+                                Ym_zerotwo
+                            </a>
+                        </div>
+                        <div className="flex items-center justify-between pt-1 border-t border-border/50">
+                            <span className="font-mono opacity-70">v0.0.0</span>
+                            <span className="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-1.5 py-0.5 rounded text-[9px] border border-yellow-500/20">
+                                {t('under_development')}
+                            </span>
+                        </div>
+                    </div>
+                )}
+            </div>
         </>
     )
 }

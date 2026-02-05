@@ -31,7 +31,10 @@
         "inventory": "Inventory",
         "suppliers": "Suppliers",
         "invoices": "Invoices",
-        "statistics": "Statistics"
+        "statistics": "Statistics",
+        "developed_by": "Developed by",
+        "version": "Version",
+        "under_development": "Under Development"
     },
     "Errors": {
         "generic": "Something went wrong!",
@@ -60,6 +63,7 @@
         "stats": {
             "warehouses": "Total Warehouses",
             "items": "Total Items",
+            "total_quantity": "Total Quantity",
             "low_stock": "Low Stock Alerts"
         },
         "toolbar": {
@@ -86,7 +90,39 @@
             "accessories": "Accessories",
             "finished": "Finished Product",
             "cancel": "Cancel",
-            "save": "Save"
+            "save": "Save",
+            "details": "Details",
+            "add_item": "Add New Item",
+            "sku": "SKU",
+            "quantity": "Quantity",
+            "min_quantity": "Min Quantity",
+            "unit": "Unit",
+            "fabric_type": "Fabric Type",
+            "color": "Color",
+            "width": "Width",
+            "weight": "Weight (GSM)",
+            "accessory_type": "Accessory Type",
+            "size": "Size",
+            "material": "Material",
+            "price": "Price",
+            "sort_by": "Sort By",
+            "sort_az": "Name (A-Z)",
+            "sort_qty_asc": "Quantity (Low-High)",
+            "sort_qty_desc": "Quantity (High-Low)",
+            "sort_price_asc": "Price (Low-High)",
+            "sort_price_desc": "Price (High-Low)",
+            "sort_date_new": "Date (Newest)",
+            "sort_date_old": "Date (Oldest)",
+            "filter_all": "All",
+            "filter_fabric": "Fabric",
+            "filter_accessories": "Accessories",
+            "search_placeholder": "Search by Name or SKU...",
+            "no_items": "No items found in this warehouse.",
+            "select_category": "Select Item Category"
+        },
+        "validation": {
+            "name_min": "Name must be at least 2 characters",
+            "categories_min": "You have to select at least one item"
         }
     }
 }

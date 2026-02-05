@@ -18,7 +18,6 @@ import {
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -27,31 +26,27 @@ import {
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Plus } from "lucide-react"
-
-// Create schema locally or use a factory if needed. 
-// For now, simpler to use t function inside component or define schema structure then apply messages?
-// Validating with internationalized messages properly requires hook call. 
-// But here we can use simple zod strings and let zodResolver handle it, 
-// OR pass t to schema generator. For simplicity, we use hardcoded or simple required checks.
-
-const formSchema = z.object({
-    name: z.string().min(2, {
-        message: "Name must be at least 2 characters.",
-    }),
-    code: z.string().min(1, {
-        message: "Code is required.",
-    }),
-    location: z.string().min(1, {
-        message: "Location is required.",
-    }),
-    categories: z.array(z.string()).refine((value) => value.length > 0, {
-        message: "You have to select at least one item.",
-    }),
-})
+import { db } from "@/lib/db"
 
 export function AddWarehouseDialog() {
     const t = useTranslations("Inventory")
+    const tVal = useTranslations("Validation")
     const [open, setOpen] = useState(false)
+
+    const formSchema = z.object({
+        name: z.string().min(2, {
+            message: t("validation.name_min"),
+        }),
+        code: z.string().min(1, {
+            message: tVal("required"),
+        }),
+        location: z.string().min(1, {
+            message: tVal("required"),
+        }),
+        categories: z.array(z.string()).refine((value) => value.length > 0, {
+            message: t("validation.categories_min"),
+        }),
+    })
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -63,11 +58,22 @@ export function AddWarehouseDialog() {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
-        setOpen(false)
-        form.reset()
-        // Here you would call API
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        try {
+            await db.warehouses.add({
+                name: values.name,
+                code: values.code,
+                location: values.location,
+                categories: values.categories,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            })
+            setOpen(false)
+            form.reset()
+        } catch (error) {
+            console.error("Failed to add warehouse:", error)
+            alert(t("Errors.generic")) // Fallback if no toast
+        }
     }
 
     const categoryItems = [
@@ -97,7 +103,7 @@ export function AddWarehouseDialog() {
                 <DialogHeader>
                     <DialogTitle>{t("form.add_title")}</DialogTitle>
                     <DialogDescription className="text-muted-foreground text-sm">
-                        {/* Optional description */}
+
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
