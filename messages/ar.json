@@ -55,10 +55,31 @@
         "min_length": "يجب أن يحتوي على {min} أحرف على الأقل",
         "max_length": "يجب أن لا يتجاوز {max} أحرف",
         "integer_only": "يجب أن يكون رقماً صحيحاً",
-        "number_only": "يجب أن يكون رقماً صحيحاً"
+        "number_only": "يجب أن يكون رقماً صحيحاً",
+        "name_min": "الاسم يجب أن يكون حرفين على الأقل",
+        "categories_min": "يجب عليك اختيار عنصر واحد على الأقل"
     },
     "Inventory": {
         "title": "إدارة المخازن",
+        "settings": "الإعدادات",
+        "warehouse_settings": "إعدادات المخزن",
+        "warehouse_settings_desc": "إدارة تفاصيل المخزن وحالته. إجراءات منطقة الخطر لا يمكن التراجع عنها.",
+        "danger_zone": "منطقة الخطر",
+        "mark_out_of_service": "وضع خارج الخدمة",
+        "mark_out_of_service_desc": "سيتم وضع المخزن كغير نشط مع الحفاظ على البيانات. لن يظهر في القوائم النشطة.",
+        "confirm_delete_warehouse": "هل أنت متأكد من رغبتك في وضع هذا المخزن خارج الخدمة؟",
+        "confirm_yes": "نعم، أنا متأكد",
+        "delete_item_confirm": "هل أنت متأكد من حذف هذا الصنف؟",
+        "settings_saved": "تم حفظ الإعدادات",
+        "settings_saved_desc": "تم تحديث تفاصيل المخزن بنجاح.",
+        "warehouse_deactivated": "تم تعطيل المخزن",
+        "warehouse_deactivated_desc": "تم وضع المخزن خارج الخدمة.",
+        "error_title": "خطأ",
+        "error_desc": "فشلت العملية. يرجى المحاولة مرة أخرى.",
+        "item_added": "تم إضافة الصنف",
+        "item_added_desc": "تم إضافة الصنف الجديد إلى المخزن بنجاح.",
+        "warehouse_added": "تم إضافة المخزن",
+        "warehouse_added_desc": "تم إنشاء المخزن الجديد بنجاح.",
         "add_warehouse": "إضافة مخزن جديد",
         "stats": {
             "warehouses": "عدد المخازن",
@@ -78,7 +99,11 @@
         },
         "warehouse": {
             "capacity": "السعة",
-            "storekeeper": "أمين المخزن"
+            "storekeeper": "أمين المخزن",
+            "total_stock": "إجمالي الكمية",
+            "in_stock": "متوفر",
+            "low_stock": "كمية قليلة",
+            "out_of_stock": "نفذت الكمية"
         },
         "form": {
             "add_title": "إضافة مخزن جديد",
@@ -101,6 +126,8 @@
             "color": "اللون",
             "width": "العرض",
             "weight": "الوزن (GSM)",
+            "image": "صورة القماش",
+            "remove_image": "حذف الصورة",
             "accessory_type": "نوع الإكسسوار",
             "size": "المقاس",
             "material": "المادة",
@@ -118,11 +145,89 @@
             "filter_accessories": "إكسسوارات",
             "search_placeholder": "بحث بالاسم أو الكود...",
             "no_items": "لا توجد أصناف في هذا المخزن.",
-            "select_category": "اختر فئة الصنف"
+            "select_category": "اختر فئة الصنف",
+            "name_placeholder": "مثال: المخزن الرئيسي",
+            "code_placeholder": "مثال: WH-001",
+            "location_placeholder": "مثال: مبنى أ، الدور الأول",
+            "fabric_details": "مواصفات القماش",
+            "accessory_details": "مواصفات الإكسسوار",
+            "fabric_name": "اسم القماش / النوع",
+            "item_name": "وصف الصنف",
+            "select_unit": "اختر الوحدة",
+            "placeholder_fabric_name": "مثال: قطن جيرسي 180 جرام",
+            "placeholder_accessory_name": "مثال: سحاب YKK رقم 5",
+            "placeholder_fabric_sku": "FAB-001",
+            "placeholder_accessory_sku": "ACC-001"
+        },
+        "units": {
+            "meter": "متر",
+            "yard": "ياردة",
+            "kg": "كيلو جرام",
+            "roll": "توب / رول",
+            "piece": "قطعة",
+            "box": "علبة",
+            "pack": "باكيت / حزمة",
+            "pair": "زوج",
+            "set": "طقم",
+            "dozen": "دزينة (12)",
+            "gross": "جروس (144)"
         },
         "validation": {
             "name_min": "الاسم يجب أن يكون حرفين على الأقل",
             "categories_min": "يجب عليك اختيار عنصر واحد على الأقل"
+        }
+    },
+    "Suppliers": {
+        "title": "إدارة الموردين",
+        "add_supplier": "إضافة مورد جديد",
+        "stats": {
+            "total": "إجمالي الموردين",
+            "active": "الموردين النشطين",
+            "blocked": "الموردين المحظورين"
+        },
+        "form": {
+            "name": "اسم المورد",
+            "contact_person": "الشخص المسؤول",
+            "phone": "رقم الهاتف",
+            "email": "البريد الإلكتروني",
+            "address": "العنوان",
+            "status": "الحالة",
+            "supply_categories": "أصناف التوريد",
+            "payment_info": "بيانات الدفع والمحاسبة",
+            "tax_id": "الرقم الضريبي",
+            "commercial_record": "السجل التجاري",
+            "payment_methods": "طرق الدفع",
+            "cat_fabric": "أقمشة",
+            "cat_accessories": "إكسسوارات",
+            "cat_machines": "ماكينات",
+            "cat_services": "خدمات",
+            "pm_cash": "كاش / نقدي",
+            "pm_credit": "آجل / تسهيلات",
+            "pm_check": "شيكات",
+            "pm_bank_transfer": "تحويل بنكي",
+            "active": "نشط",
+            "blocked": "محظور",
+            "save": "حفظ المورد",
+            "cancel": "إلغاء",
+            "placeholder_name": "مثال: مصنع النور للأقمشة",
+            "placeholder_contact": "مثال: أحمد علي",
+            "placeholder_phone": "01012345678",
+            "placeholder_email": "contact@alnour.com",
+            "placeholder_address": "مثال: مدينة العاشر من رمضان",
+            "placeholder_tax_id": "مثال: 123-456-789",
+            "placeholder_commercial_record": "مثال: 987654"
+        },
+        "toolbar": {
+            "search_placeholder": "بحث عن مورد...",
+            "filter_all": "كل الحالات",
+            "filter_active": "نشط",
+            "filter_blocked": "محظور",
+            "sort_newest": "الأحدث إضافة",
+            "sort_oldest": "الأقدم إضافة"
+        },
+        "messages": {
+            "added_success": "تم إضافة المورد",
+            "added_success_desc": "تم تسجيل المورد الجديد بنجاح."
         }
     }
 }
