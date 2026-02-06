@@ -22,7 +22,7 @@ export default function InventoryPage() {
     const isLoading = warehouses === undefined
 
     return (
-        <div className="flex-1 space-y-6 p-8 pt-6">
+        <div className="flex-1 space-y-6">
             {/* Header */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{t("title")}</h2>

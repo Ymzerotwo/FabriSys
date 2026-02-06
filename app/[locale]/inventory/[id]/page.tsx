@@ -55,7 +55,7 @@ export default function WarehousePage({ params }: { params: Promise<{ id: string
     if (!warehouse) return null;
 
     return (
-        <div className="flex-1 space-y-6 p-8 pt-6">
+        <div className="flex-1 space-y-6">
             {/* Header / Nav */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex items-start gap-4">
