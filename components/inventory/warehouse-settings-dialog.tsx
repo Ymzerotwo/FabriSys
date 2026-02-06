@@ -82,6 +82,7 @@ export function WarehouseSettingsDialog({ warehouse }: WarehouseSettingsDialogPr
             toast({
                 title: t("settings_saved"),
                 description: t("settings_saved_desc"),
+                variant: "success",
             })
         } catch (error) {
             console.error("Failed to update warehouse:", error)
@@ -104,6 +105,7 @@ export function WarehouseSettingsDialog({ warehouse }: WarehouseSettingsDialogPr
             toast({
                 title: t("warehouse_deactivated"),
                 description: t("warehouse_deactivated_desc"),
+                variant: "success",
             })
 
             router.push("/inventory")

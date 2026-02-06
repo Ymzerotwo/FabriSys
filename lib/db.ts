@@ -70,7 +70,7 @@ export interface Supplier {
     taxId?: string;
     commercialRecord?: string;
     paymentMethods?: string[]; // e.g., ['cash', 'credit', 'check']
-    status: 'active' | 'blocked';
+    status: 'active' | 'inactive' | 'blocked';
     createdAt: Date;
     updatedAt: Date;
 }

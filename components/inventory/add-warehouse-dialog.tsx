@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
+import { useToast } from "@/hooks/use-toast"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -30,6 +31,7 @@ import { db } from "@/lib/db"
 
 export function AddWarehouseDialog() {
     const t = useTranslations("Inventory")
+    const { toast } = useToast()
     const tVal = useTranslations("Validation")
     const [open, setOpen] = useState(false)
 
@@ -70,9 +72,18 @@ export function AddWarehouseDialog() {
             })
             setOpen(false)
             form.reset()
+            toast({
+                title: t("warehouse_added"),
+                description: t("warehouse_added_desc"),
+                variant: "success",
+            })
         } catch (error) {
             console.error("Failed to add warehouse:", error)
-            alert(t("Errors.generic")) // Fallback if no toast
+            toast({
+                title: t("error_title"),
+                description: t("error_desc"),
+                variant: "destructive",
+            })
         }
     }
 
@@ -115,7 +126,7 @@ export function AddWarehouseDialog() {
                                 <FormItem>
                                     <FormLabel>{t("form.name")}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="" {...field} />
+                                        <Input placeholder={t("form.name_placeholder")} {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -128,7 +139,7 @@ export function AddWarehouseDialog() {
                                 <FormItem>
                                     <FormLabel>{t("form.code")}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="" {...field} />
+                                        <Input placeholder={t("form.code_placeholder")} {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -141,7 +152,7 @@ export function AddWarehouseDialog() {
                                 <FormItem>
                                     <FormLabel>{t("form.location")}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="" {...field} />
+                                        <Input placeholder={t("form.location_placeholder")} {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

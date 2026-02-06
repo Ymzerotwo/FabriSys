@@ -206,6 +206,7 @@
             "pm_check": "شيكات",
             "pm_bank_transfer": "تحويل بنكي",
             "active": "نشط",
+            "inactive": "غير نشط",
             "blocked": "محظور",
             "save": "حفظ المورد",
             "cancel": "إلغاء",
@@ -213,6 +214,7 @@
             "placeholder_contact": "مثال: أحمد علي",
             "placeholder_phone": "01012345678",
             "placeholder_email": "contact@alnour.com",
+            "delete_supplier": "حذف المورد",
             "placeholder_address": "مثال: مدينة العاشر من رمضان",
             "placeholder_tax_id": "مثال: 123-456-789",
             "placeholder_commercial_record": "مثال: 987654"
@@ -227,7 +229,17 @@
         },
         "messages": {
             "added_success": "تم إضافة المورد",
-            "added_success_desc": "تم تسجيل المورد الجديد بنجاح."
+            "added_success_desc": "تم إضافة المورد بنجاح إلى قاعدة البيانات.",
+            "status_updated": "تم تحديث الحالة",
+            "status_updated_desc": "تم تغيير حالة المورد إلى {status}.",
+            "deleted": "تم حذف المورد",
+            "deleted_desc": "تم إزالة المورد بنجاح.",
+            "delete_confirm": "هل أنت متأكد من حذف هذا المورد؟",
+            "error_generic": "فشلت العملية",
+            "error_generic_desc": "حدث خطأ أثناء معالجة طلبك. يرجى المحاولة مرة أخرى.",
+            "delete_dialog_title": "هل أنت متأكد تماماً؟",
+            "delete_dialog_desc": "هذا الإجراء لا يمكن التراجع عنه. سيتم حذف المورد وجميع البيانات المرتبطة به نهائياً.",
+            "confirm_delete": "نعم، احذف المورد"
         }
     }
 }

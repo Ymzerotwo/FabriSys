@@ -87,9 +87,15 @@ export function AddItemDialog({ warehouseId, supportedCategories }: AddItemDialo
             toast({
                 title: t("item_added"),
                 description: t("item_added_desc"),
+                variant: "success",
             })
         } catch (error) {
             console.error("Failed to add item:", error)
+            toast({
+                title: t("error_title"),
+                description: t("error_desc"),
+                variant: "destructive",
+            })
         }
     }
 

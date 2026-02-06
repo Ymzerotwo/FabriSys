@@ -206,6 +206,7 @@
             "pm_check": "Check",
             "pm_bank_transfer": "Bank Transfer",
             "active": "Active",
+            "inactive": "Inactive",
             "blocked": "Blocked",
             "save": "Save Supplier",
             "cancel": "Cancel",
@@ -213,6 +214,7 @@
             "placeholder_contact": "e.g. Ahmed Ali",
             "placeholder_phone": "e.g. +20 123 456 7890",
             "placeholder_email": "e.g. contact@alnour.com",
+            "delete_supplier": "Delete Supplier",
             "placeholder_address": "e.g. 10th of Ramadan City",
             "placeholder_tax_id": "e.g. 123-456-789",
             "placeholder_commercial_record": "e.g. 987654"
@@ -227,7 +229,17 @@
         },
         "messages": {
             "added_success": "Supplier Added",
-            "added_success_desc": "New supplier has been successfully registered."
+            "added_success_desc": "The supplier has been successfully added to the database.",
+            "status_updated": "Status Updated",
+            "status_updated_desc": "Supplier status has been changed to {status}.",
+            "deleted": "Supplier Deleted",
+            "deleted_desc": "The supplier has been removed successfully.",
+            "delete_confirm": "Are you sure you want to delete this supplier?",
+            "error_generic": "Action Failed",
+            "error_generic_desc": "An error occurred while processing your request. Please try again.",
+            "delete_dialog_title": "Are you absolutely sure?",
+            "delete_dialog_desc": "This action cannot be undone. This will permanently delete the supplier and remove their data from our servers.",
+            "confirm_delete": "Yes, delete supplier"
         }
     }
 }
