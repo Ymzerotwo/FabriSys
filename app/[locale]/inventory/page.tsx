@@ -18,7 +18,7 @@ export default function InventoryPage() {
     const t = useTranslations("Inventory")
 
     // Live query to fetch warehouses from Dexie
-    const warehouses = useLiveQuery(() => db.warehouses.toArray())
+    const warehouses = useLiveQuery(() => db.warehouses.filter(w => w.isActive !== false).toArray())
     const isLoading = warehouses === undefined
 
     return (

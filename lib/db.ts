@@ -6,33 +6,71 @@ export interface Warehouse {
     code: string;
     location: string;
     categories: string[];
+    isActive?: boolean; // New field for soft delete
     createdAt: Date;
     updatedAt: Date;
 }
 
+// The Parent Product (e.g., "Parasol Fabric")
 export interface Item {
     id?: number;
     warehouseId: number;
     name: string;
-    sku: string;
-    category: string;
+    sku: string; // Base Code
+    category: string; // 'fabric', 'accessories'
+    minQuantity: number; // For low stock alerts (on total)
+    unit: string; // 'meters', 'kg', 'pcs'
+    image?: string;
+
+    // Physical Dimensions (Optional defaults or specific item data)
+    width?: number;
+    length?: number;
+    weight?: number;
+
+    // Cached totals for list views (updated when variants change)
+    totalQuantity: number;
+
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+// The Child Variant (e.g., "Red Roll, 150cm")
+export interface Variant {
+    id?: number;
+    itemId: number; // FK to Item
+    warehouseId: number; // Denormalized for rapid filtering
+
     quantity: number;
-    minQuantity: number;
-    unit: string;
+    price: number;
 
-    price?: number;
-
-    // Fabric specific
-    fabricType?: string;
+    // Dynamic attributes based on category
+    // For Fabric:
     color?: string;
     width?: number;
     weight?: number; // gsm
+    fabricType?: string; // specific weave if needed? usually on parent, but let's keep flexibility
 
-    // Accessory specific
-    accessoryType?: string;
+    // For Accessories:
     size?: string;
     material?: string;
+    accessoryType?: string;
 
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface Supplier {
+    id?: number;
+    name: string;
+    contactPerson?: string;
+    phone: string;
+    email?: string;
+    address?: string;
+    supplyCategories?: string[]; // e.g., ['fabric', 'accessories']
+    taxId?: string;
+    commercialRecord?: string;
+    paymentMethods?: string[]; // e.g., ['cash', 'credit', 'check']
+    status: 'active' | 'blocked';
     createdAt: Date;
     updatedAt: Date;
 }
@@ -40,12 +78,16 @@ export interface Item {
 export class FabriSysDatabase extends Dexie {
     warehouses!: Table<Warehouse>;
     items!: Table<Item>;
+    variants!: Table<Variant>;
+    suppliers!: Table<Supplier>;
 
     constructor() {
         super('FabriSysDB');
-        this.version(3).stores({
-            warehouses: '++id, name, code, location, *categories',
-            items: '++id, warehouseId, name, sku, category, price'
+        this.version(7).stores({
+            warehouses: '++id, name, code, location, *categories, isActive',
+            items: '++id, warehouseId, name, sku, category',
+            variants: '++id, itemId, warehouseId',
+            suppliers: '++id, name, status, phone, *supplyCategories, *paymentMethods'
         });
     }
 }

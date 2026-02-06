@@ -13,19 +13,20 @@ import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
 import { AddItemDialog } from "@/components/inventory/add-item-dialog"
+import { WarehouseSettingsDialog } from "@/components/inventory/warehouse-settings-dialog"
 import { ItemsTable } from "@/components/inventory/items-table"
 
 export default function WarehousePage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params)
+    const { id: idStr } = use(params)
     const t = useTranslations("Inventory")
-    const warehouseId = parseInt(id)
+    const warehouseId = parseInt(idStr)
 
     const warehouse = useLiveQuery(() => db.warehouses.get(warehouseId), [warehouseId])
     const items = useLiveQuery(() => db.items.where('warehouseId').equals(warehouseId).toArray(), [warehouseId])
 
     const itemsCount = items?.length || 0;
-    const totalQuantity = items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
-    const lowStockCount = items?.filter(item => item.quantity <= item.minQuantity).length || 0;
+    const totalQuantity = items?.reduce((sum, item) => sum + item.totalQuantity, 0) || 0;
+    const lowStockCount = items?.filter(item => item.totalQuantity <= item.minQuantity).length || 0;
 
     // While loading
     if (warehouse === undefined) {
@@ -86,7 +87,10 @@ export default function WarehousePage({ params }: { params: Promise<{ id: string
                         </div>
                     </div>
                 </div>
-                <AddItemDialog warehouseId={warehouseId} supportedCategories={warehouse.categories} />
+                <div className="flex gap-2">
+                    <WarehouseSettingsDialog warehouse={warehouse} />
+                    <AddItemDialog warehouseId={warehouseId} supportedCategories={warehouse.categories} />
+                </div>
             </div>
 
             {/* Overview Stats */}

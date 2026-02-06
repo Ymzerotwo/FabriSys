@@ -27,6 +27,7 @@ import { Sidebar, MobileSidebarTrigger } from '@/components/sidebar';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { UserNav } from '@/components/user-nav';
 import { LanguageToggle } from '@/components/language-toggle';
+import { Toaster } from "@/components/ui/toaster"
 
 export default async function RootLayout({
   children,
@@ -75,6 +76,7 @@ export default async function RootLayout({
                 </main>
               </div>
             </div>
+            <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
