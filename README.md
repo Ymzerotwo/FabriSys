@@ -1,38 +1,75 @@
-# FabriSys
+# 🏭 FabriSys - Clothing Production Management System
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+[![Status](https://img.shields.io/badge/Status-Under%20Development-orange)](https://github.com/yourusername/fabrisys)
+[![License](https://img.shields.io/badge/License-Educational%20Use%20Only-red)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 
-## Getting Started
+**FabriSys** is a comprehensive management system designed exclusively for modern garment factories. It aims to streamline the entire production lifecycle, from raw material inventory to the final product delivery.
 
-First, run the development server:
+> ⚠️ **IMPORTANT DISCLAIMER**
+>
+> This version of FabriSys is open-source for **educational and experimental purposes only**. It is **NOT** intended for commercial use in real production environments. A full, feature-rich, and commercially supported version will be available soon as a paid product.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 About The Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+FabriSys provides a unified platform to manage:
+- **📦 Inventory & Warehouses:** Real-time tracking of fabrics, accessories, and finished products.
+- **🤵 Suppliers:** Manage supplier relationships, supply categories, and accounting info.
+- **🧾 Invoices:** Track purchases and sales.
+- **👥 Workers:** Manage workforce and shifts.
+- **📊 Analytics:** Real-time insights into production efficiency.
+- **🚚 Orders:** Seamless workflow from administration requests to final delivery.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application is built with a focus on:
+- **Modern UI/UX:** Supporting both Light and Dark modes.
+- **Bilingual Support:** Full support for Arabic and English (RTL/LTR).
+- **Responsive Design:** Works smoothly on all devices (Desktop, Tablet, Mobile).
+- **Local-First:** Uses IndexedDB (via Dexie.js) for fast, offline-capable data management (in this demo version).
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **Internationalization:** next-intl
+- **Database:** Dexie.js (Client-side IndexedDB)
+- **Icons:** Lucide React
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚧 Status
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is currently **Under Development**. Features are being added and refined actively.
 
-## Deploy on Vercel
+## 🔜 Future Commercial Version
+The upcoming paid version will include advanced features such as:
+- Cloud-based centralized database (PostgreSQL/Supabase).
+- Multi-user authentication and role-based access control.
+- Advanced reporting and export capabilities.
+- API integrations with accounting software.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/fabrisys.git
+   ```
+
+2. **Install dependencies**
+   ```bash
+   cd fabrisys
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in browser**
+   Navigate to `http://localhost:3000`
+
+---
+*Developed with ❤️ for the garment industry.*
