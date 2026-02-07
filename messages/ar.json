@@ -110,7 +110,10 @@
             "total_stock": "إجمالي الكمية",
             "in_stock": "متوفر",
             "low_stock": "كمية قليلة",
-            "out_of_stock": "نفذت الكمية"
+            "out_of_stock": "نفذت الكمية",
+            "total_batches": "إجمالي الدفعات",
+            "alert": "تنبيه",
+            "stock_low_desc": "المخزون أقل من الحد الأدنى"
         },
         "form": {
             "add_title": "إضافة مخزن جديد",
@@ -152,6 +155,11 @@
             "filter_accessories": "إكسسوارات",
             "search_placeholder": "بحث بالاسم أو الكود...",
             "no_items": "لا توجد أصناف في هذا المخزن.",
+            "no_stock": "لم يتم إضافة مخزون بعد",
+            "no_stock_desc": "قم بإضافة أول دفعة من المخزون لتتبع التفاصيل مثل طول الرول، اللون، أو أرقام التشغيلة.",
+            "add_stock_unit": "إضافة {unit}",
+            "current_stock_list": "قائمة تشغيلات / رولات المخزون الحالية.",
+            "stock_history": "سجل المخزون / التشغيلات",
             "select_category": "اختر فئة الصنف",
             "name_placeholder": "مثال: المخزن الرئيسي",
             "code_placeholder": "مثال: WH-001",
@@ -178,6 +186,12 @@
             "set": "طقم",
             "dozen": "دزينة (12)",
             "gross": "جروس (144)"
+        },
+        "actions": {
+            "add_stock": "إضافة مخزون",
+            "edit_item": "تعديل الصنف",
+            "delete_item": "حذف الصنف",
+            "print_label": "طباعة ملصق"
         },
         "validation": {
             "name_min": "الاسم يجب أن يكون حرفين على الأقل",

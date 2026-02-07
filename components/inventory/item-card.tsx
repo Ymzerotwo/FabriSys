@@ -26,8 +26,11 @@ interface ItemCardProps {
     }
 }
 
+import { useRouter } from "@/i18n/routing"
+
 export function ItemCard({ item }: ItemCardProps) {
     const t = useTranslations("Inventory")
+    const router = useRouter()
 
     const getStockStatus = (quantity: number, minQuantity: number) => {
         if (quantity === 0) return { label: t("warehouse.out_of_stock"), color: "text-destructive", icon: XCircle, bg: "bg-destructive/10" }
@@ -49,7 +52,7 @@ export function ItemCard({ item }: ItemCardProps) {
 
     return (
         <Card
-            onClick={() => window.location.href = `/inventory/${item.warehouseId}/products/${item.id}`}
+            onClick={() => router.push(`/inventory/${item.warehouseId}/products/${item.id}`)}
             className={`
                 group cursor-pointer transition-all duration-300
                 hover:shadow-lg hover:-translate-y-1

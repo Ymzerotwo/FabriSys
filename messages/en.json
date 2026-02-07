@@ -110,7 +110,10 @@
             "total_stock": "Total Stock",
             "in_stock": "In Stock",
             "low_stock": "Low Stock",
-            "out_of_stock": "Out of Stock"
+            "out_of_stock": "Out of Stock",
+            "total_batches": "Total Batches",
+            "alert": "Alert",
+            "stock_low_desc": "Stock is below minimum level"
         },
         "form": {
             "add_title": "Add New Warehouse",
@@ -152,6 +155,11 @@
             "filter_accessories": "Accessories",
             "search_placeholder": "Search by Name or SKU...",
             "no_items": "No items found in this warehouse.",
+            "no_stock": "No stock added yet",
+            "no_stock_desc": "Add your first batch of stock to track specific details like roll length, color, or batch numbers.",
+            "add_stock_unit": "Add {unit}",
+            "current_stock_list": "List of current stock batches / rolls.",
+            "stock_history": "Stock History/Batches",
             "select_category": "Select Item Category",
             "name_placeholder": "e.g. Main Warehouse",
             "code_placeholder": "e.g. WH-001",
@@ -178,6 +186,12 @@
             "set": "Sets",
             "dozen": "Dozens",
             "gross": "Gross"
+        },
+        "actions": {
+            "add_stock": "Add Stock",
+            "edit_item": "Edit Item",
+            "delete_item": "Delete Item",
+            "print_label": "Print Label"
         },
         "validation": {
             "name_min": "Name must be at least 2 characters",
