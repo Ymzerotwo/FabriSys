@@ -185,6 +185,7 @@ interface InvoiceWithSupplier extends Invoice {
 function InvoiceCard({ invoice, t, tStatus }: { invoice: InvoiceWithSupplier, t: (key: string) => string, tStatus: (key: string) => string }) {
     const { toast } = useToast()
     const formatter = useFormatter()
+    const tForm = useTranslations("Invoices.form")
     const [showDeleteAlert, setShowDeleteAlert] = useState(false)
     const [viewInvoice, setViewInvoice] = useState<InvoiceWithSupplier | null>(null)
 
@@ -194,7 +195,7 @@ function InvoiceCard({ invoice, t, tStatus }: { invoice: InvoiceWithSupplier, t:
             toast({
                 title: t("delete_invoice"),
                 description: "تم حذف الفاتورة بنجاح", // Or generic message
-                variant: "default", // Using default/success style
+                variant: "success", // Using success style
             })
             setShowDeleteAlert(false)
         } catch (error) {
@@ -215,6 +216,8 @@ function InvoiceCard({ invoice, t, tStatus }: { invoice: InvoiceWithSupplier, t:
             default: return 'outline';
         }
     }
+
+    const remainingAmount = invoice.amount - (invoice.paidAmount || 0);
 
     return (
         <>
@@ -248,41 +251,92 @@ function InvoiceCard({ invoice, t, tStatus }: { invoice: InvoiceWithSupplier, t:
                                 {formatter.number(invoice.amount, { style: 'currency', currency: 'EGP' })}
                             </span>
                         </div>
+
+                        {invoice.status === 'credit' && (
+                            <div className="pt-2 mt-2 border-t border-dashed space-y-1">
+                                <div className="flex justify-between text-xs">
+                                    <span className="text-muted-foreground">{tForm('remaining_amount')}</span>
+                                    <span className="font-semibold text-destructive">
+                                        {formatter.number(remainingAmount, { style: 'currency', currency: 'EGP' })}
+                                    </span>
+                                </div>
+                                {invoice.dueDate && (
+                                    <div className="flex justify-between text-xs">
+                                        <span className="text-muted-foreground">{tForm('due_date')}</span>
+                                        <span className="font-medium text-orange-600">
+                                            {formatter.dateTime(invoice.dueDate, { dateStyle: 'medium' })}
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {invoice.status === 'paid' && invoice.paidDate && (
+                            <div className="pt-2 mt-2 border-t border-dashed space-y-1">
+                                <div className="flex justify-between text-xs text-emerald-600">
+                                    <span className="text-muted-foreground">{t('paid_on') || "Paid On"}</span>
+                                    <span className="font-medium">
+                                        {formatter.dateTime(invoice.paidDate, { dateStyle: 'medium' })}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
+
+                        {invoice.notes && (
+                            <div className="pt-2 mt-2 border-t border-dashed text-xs text-muted-foreground line-clamp-2" title={invoice.notes}>
+                                <FileText className="h-3 w-3 inline mr-1" />
+                                {invoice.notes}
+                            </div>
+                        )}
                     </div>
 
                     <div className="pt-2 flex justify-between items-end border-t border-border/40 mt-3 pt-3">
                         <div className="text-[10px] text-muted-foreground space-y-0.5">
                             <div className="flex items-center gap-1">
                                 <Banknote className="h-3 w-3" />
-                                <span>{invoice.paymentMethod}</span>
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                <span>{t(`payment_methods.${invoice.paymentMethod}` as any)}</span>
                             </div>
                         </div>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                    <span className="sr-only">Open menu</span>
-                                    <MoreHorizontal className="h-4 w-4" />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                <DropdownMenuLabel>{t("actions_menu")}</DropdownMenuLabel>
-                                <DropdownMenuItem onClick={() => navigator.clipboard.writeText(invoice.invoiceNumber)}>
-                                    <FileText className="mr-2 h-4 w-4" />
-                                    {t("copy_number")}
-                                </DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem onClick={() => setViewInvoice(invoice)}>
-                                    {t("view_details")}
-                                </DropdownMenuItem>
-                                <DropdownMenuItem
-                                    className="text-destructive focus:text-destructive"
-                                    onClick={() => setShowDeleteAlert(true)}
+                        <div className="flex gap-2">
+                            {invoice.status === 'credit' && (
+                                <Button
+                                    variant="secondary"
+                                    size="sm"
+                                    className="h-8 text-xs bg-emerald-100 text-emerald-700 hover:bg-emerald-200"
+                                    onClick={() => setViewInvoice(invoice)}
                                 >
-                                    <Trash className="mr-2 h-4 w-4" />
-                                    {t("delete_invoice")}
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                                    <DollarSign className="h-3 w-3 mr-1" />
+                                    {t('pay') || "Pay"}
+                                </Button>
+                            )}
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                        <span className="sr-only">Open menu</span>
+                                        <MoreHorizontal className="h-4 w-4" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                    <DropdownMenuLabel>{t("actions_menu")}</DropdownMenuLabel>
+                                    <DropdownMenuItem onClick={() => navigator.clipboard.writeText(invoice.invoiceNumber)}>
+                                        <FileText className="mr-2 h-4 w-4" />
+                                        {t("copy_number")}
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem onClick={() => setViewInvoice(invoice)}>
+                                        {t("view_details")}
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem
+                                        className="text-destructive focus:text-destructive"
+                                        onClick={() => setShowDeleteAlert(true)}
+                                    >
+                                        <Trash className="mr-2 h-4 w-4" />
+                                        {t("delete_invoice")}
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
                     </div>
                 </CardContent>
             </Card>

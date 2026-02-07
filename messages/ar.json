@@ -256,6 +256,8 @@
         "total_amount": "إجمالي المبالغ",
         "paid_invoices": "فواتير مدفوعة",
         "credit_invoices": "فواتير آجلة",
+        "paid_on": "تم السداد بتاريخ",
+        "pay": "سداد",
         "form": {
             "invoice_number": "رقم الفاتورة",
             "supplier": "المورد",
@@ -263,7 +265,11 @@
             "payment_method": "طريقة الدفع",
             "status": "الحالة",
             "date": "تاريخ الفاتورة",
+            "due_date": "ميعاد الاستحقاق",
+            "pick_date": "اختر تاريخ",
             "notes": "ملاحظات",
+            "paid_amount": "المبلغ المدفوع",
+            "remaining_amount": "المبلغ المتبقي",
             "save": "حفظ الفاتورة",
             "cancel": "إلغاء",
             "select_supplier": "اختر المورد",
@@ -273,6 +279,7 @@
             "select_status": "اختر حالة الفاتورة",
             "placeholder_invoice_number": "أدخل رقم الفاتورة (مثال: INV-001)",
             "placeholder_amount": "0.00",
+            "placeholder_paid_amount": "0.00",
             "placeholder_notes": "أي ملاحظات إضافية..."
         },
         "stats": {
@@ -320,7 +327,12 @@
             "added_success_desc": "تم حفظ الفاتورة بنجاح في النظام.",
             "error_generic": "خطأ",
             "error_generic_desc": "حدث خطأ أثناء حفظ الفاتورة."
-        }
+        },
+        "complete_payment": "استكمال الدفع",
+        "payment_completed": "تم استكمال الدفع",
+        "add_payment": "إضافة دفعة",
+        "amount_to_pay": "المبلغ المراد دفعه",
+        "payment_added": "تم إضافة الدفعة بنجاح"
     },
     "Users": {
         "title": "إدارة المستخدمين",

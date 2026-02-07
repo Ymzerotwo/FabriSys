@@ -3,7 +3,7 @@
 import * as React from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon, Check, ChevronsUpDown, Search } from "lucide-react"
-import { useForm } from "react-hook-form"
+import { useForm, useWatch } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
@@ -62,12 +62,17 @@ export function InvoiceForm({ onSuccess }: InvoiceFormProps) {
             invoiceNumber: "",
             supplierId: 0,
             amount: 0,
+            paidAmount: 0,
             status: "paid",
             paymentMethod: "cash",
             date: new Date(),
             notes: ""
         },
     })
+
+    const status = useWatch({ control: form.control, name: "status" })
+    const amount = useWatch({ control: form.control, name: "amount" })
+    const paidAmount = useWatch({ control: form.control, name: "paidAmount" })
 
     const filteredSuppliers = suppliers?.filter(supplier =>
         supplier.name.toLowerCase().includes(supplierSearch.toLowerCase())
@@ -76,19 +81,26 @@ export function InvoiceForm({ onSuccess }: InvoiceFormProps) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async function onSubmit(data: any) {
         try {
+            // Determine paid amount based on status
+            const isCredit = data.status === 'credit';
+            const paidAmount = isCredit ? (data.paidAmount ?? 0) : data.amount;
+
             await db.invoices.add({
                 invoiceNumber: data.invoiceNumber,
                 supplierId: data.supplierId,
                 amount: data.amount,
+                paidAmount: paidAmount,
                 paymentMethod: data.paymentMethod,
                 status: data.status as 'paid' | 'credit' | 'cancelled',
                 date: data.date,
+                dueDate: isCredit ? data.dueDate : undefined,
                 notes: data.notes,
                 createdAt: new Date(),
                 updatedAt: new Date()
             });
 
             toast({
+                variant: "success",
                 title: t('save'),
                 description: "تم حفظ الفاتورة بنجاح", // Or use translation key
             })
@@ -217,6 +229,86 @@ export function InvoiceForm({ onSuccess }: InvoiceFormProps) {
                         )}
                     />
 
+                    {status === "credit" && (
+                        <div className="rounded-lg border bg-card p-4 shadow-sm animate-in fade-in space-y-4">
+                            <div className="grid grid-cols-2 gap-4 items-end">
+                                <FormField
+                                    control={form.control}
+                                    name="paidAmount"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>{t('paid_amount')}</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    type="number"
+                                                    step="0.01"
+                                                    placeholder={t('placeholder_paid_amount')}
+                                                    {...field}
+                                                    value={field.value as number}
+                                                    onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <div className="flex flex-col gap-1.5 pb-2">
+                                    <span className="text-sm font-medium text-muted-foreground">
+                                        {t('remaining_amount')}
+                                    </span>
+                                    <span className="text-2xl font-bold tracking-tight">
+                                        {(
+                                            (Number(amount) || 0) - (Number(paidAmount) || 0)
+                                        ).toFixed(2)}
+                                        <span className="text-xs font-normal text-muted-foreground ml-1">EGP</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <FormField
+                                control={form.control}
+                                name="dueDate"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel>{t('due_date')}</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant={"outline"}
+                                                        className={cn(
+                                                            "w-full pl-3 text-left font-normal",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {field.value ? (
+                                                            format(field.value, "PPP")
+                                                        ) : (
+                                                            <span>{t('pick_date')}</span>
+                                                        )}
+                                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-auto p-0" align="start">
+                                                <Calendar
+                                                    mode="single"
+                                                    selected={field.value}
+                                                    onSelect={field.onChange}
+                                                    disabled={(date) =>
+                                                        date < new Date("1900-01-01")
+                                                    }
+                                                    initialFocus
+                                                />
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    )}
+
                     <FormField
                         control={form.control}
                         name="date"
@@ -267,14 +359,25 @@ export function InvoiceForm({ onSuccess }: InvoiceFormProps) {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>{t('payment_method')}</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <Select
+                                    onValueChange={(val) => {
+                                        field.onChange(val);
+                                        // Auto-set status based on payment method for better UX
+                                        if (val === 'credit') {
+                                            form.setValue('status', 'credit');
+                                        } else {
+                                            form.setValue('status', 'paid');
+                                            form.setValue('paidAmount', form.getValues('amount'));
+                                        }
+                                    }}
+                                    defaultValue={field.value}
+                                >
                                     <FormControl>
                                         <SelectTrigger>
                                             <SelectValue placeholder={t('select_payment_method')} />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-
                                         <SelectItem value="cash">نقدي (Cash)</SelectItem>
                                         <SelectItem value="check">شيك (Check)</SelectItem>
                                         <SelectItem value="bank_transfer">تحويل بنكي (Bank Transfer)</SelectItem>
@@ -292,7 +395,7 @@ export function InvoiceForm({ onSuccess }: InvoiceFormProps) {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>{t('status')}</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
                                             <SelectValue placeholder={t('select_status')} />

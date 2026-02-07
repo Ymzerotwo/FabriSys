@@ -113,9 +113,12 @@ export interface Invoice {
     invoiceNumber: string;
     supplierId: number; // Link to Supplier
     amount: number;
+    paidAmount: number; // Amount paid so far
     paymentMethod: string; // 'cash', 'check', 'credit', etc.
     status: 'paid' | 'credit' | 'cancelled';
     date: Date;
+    dueDate?: Date;
+    paidDate?: Date;
     notes?: string;
     createdAt: Date;
     updatedAt: Date;

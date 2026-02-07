@@ -256,6 +256,8 @@
         "total_amount": "Total Amount",
         "paid_invoices": "Paid Invoices",
         "credit_invoices": "Credit Invoices",
+        "paid_on": "Paid on",
+        "pay": "Pay",
         "form": {
             "invoice_number": "Invoice Number",
             "supplier": "Supplier",
@@ -263,7 +265,11 @@
             "payment_method": "Payment Method",
             "status": "Status",
             "date": "Invoice Date",
+            "due_date": "Due Date",
+            "pick_date": "Pick a date",
             "notes": "Notes",
+            "paid_amount": "Paid Amount",
+            "remaining_amount": "Remaining Amount",
             "save": "Save Invoice",
             "cancel": "Cancel",
             "select_supplier": "Select supplier",
@@ -273,6 +279,7 @@
             "select_status": "Select status",
             "placeholder_invoice_number": "Enter invoice number (e.g. INV-001)",
             "placeholder_amount": "0.00",
+            "placeholder_paid_amount": "0.00",
             "placeholder_notes": "Any additional notes..."
         },
         "stats": {
@@ -320,7 +327,12 @@
             "added_success_desc": "The invoice has been successfully saved to the system.",
             "error_generic": "Error",
             "error_generic_desc": "An error occurred while saving the invoice."
-        }
+        },
+        "complete_payment": "Complete Payment",
+        "payment_completed": "Payment Completed",
+        "add_payment": "Add Payment",
+        "amount_to_pay": "Amount to Pay",
+        "payment_added": "Payment Added Successfully"
     },
     "Users": {
         "title": "User Management",
