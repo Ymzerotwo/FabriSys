@@ -31,6 +31,7 @@
         "inventory": "المخازن",
         "suppliers": "الموردين",
         "invoices": "الفواتير",
+        "users": "المستخدمين",
         "statistics": "الإحصائيات",
         "developed_by": "تم التطوير بواسطة",
         "version": "الإصدار",
@@ -240,6 +241,79 @@
             "delete_dialog_title": "هل أنت متأكد تماماً؟",
             "delete_dialog_desc": "هذا الإجراء لا يمكن التراجع عنه. سيتم حذف المورد وجميع البيانات المرتبطة به نهائياً.",
             "confirm_delete": "نعم، احذف المورد"
+        }
+    },
+    "Invoices": {
+        "title": "إدارة الفواتير",
+        "add_invoice": "إضافة فاتورة جديدة",
+        "total_invoices": "إجمالي الفواتير",
+        "total_amount": "إجمالي المبالغ",
+        "paid_invoices": "فواتير مدفوعة",
+        "credit_invoices": "فواتير آجلة",
+        "form": {
+            "invoice_number": "رقم الفاتورة",
+            "supplier": "المورد",
+            "amount": "القيمة",
+            "payment_method": "طريقة الدفع",
+            "status": "الحالة",
+            "date": "تاريخ الفاتورة",
+            "notes": "ملاحظات",
+            "save": "حفظ الفاتورة",
+            "cancel": "إلغاء",
+            "select_supplier": "اختر المورد",
+            "search_supplier": "بحث عن مورد...",
+            "no_supplier_found": "لم يتم العثور على مورد.",
+            "select_payment_method": "اختر طريقة الدفع",
+            "select_status": "اختر حالة الفاتورة",
+            "placeholder_invoice_number": "أدخل رقم الفاتورة (مثال: INV-001)",
+            "placeholder_amount": "0.00",
+            "placeholder_notes": "أي ملاحظات إضافية..."
+        },
+        "stats": {
+            "total_invoices": "إجمالي الفواتير",
+            "total_amount": "إجمالي المبالغ",
+            "paid_invoices": "فواتير مدفوعة",
+            "credit_invoices": "فواتير آجلة"
+        },
+        "toolbar": {
+            "search_placeholder": "بحث برقم الفاتورة أو المورد...",
+            "filter_all": "جميع الحالات",
+            "sort_newest": "الأحدث",
+            "sort_oldest": "الأقدم"
+        },
+        "status": {
+            "paid": "مدفوعة",
+            "credit": "آجل / ذمم",
+            "cancelled": "ملغية"
+        },
+        "payment_methods": {
+            "cash": "نقدي",
+            "check": "شيك",
+            "bank_transfer": "تحويل بنكي",
+            "credit": "آجل"
+        },
+        "table": {
+            "invoice_number": "رقم الفاتورة",
+            "amount": "القيمة",
+            "supplier": "المورد",
+            "status": "الحالة",
+            "date": "التاريخ",
+            "actions": "إجراءات",
+            "no_invoices": "لا توجد فواتير لعرضها"
+        },
+        "actions_menu": "الإجراءات",
+        "copy_number": "نسخ رقم الفاتورة",
+        "view_details": "عرض التفاصيل",
+        "delete_invoice": "حذف الفاتورة",
+        "delete_confirm_title": "هل أنت متأكد؟",
+        "delete_confirm_desc": "هذا الإجراء لا يمكن التراجع عنه. سيتم حذف الفاتورة نهائياً.",
+        "cancel": "إلغاء",
+        "delete": "حذف",
+        "messages": {
+            "added_success": "تم إضافة الفاتورة",
+            "added_success_desc": "تم حفظ الفاتورة بنجاح في النظام.",
+            "error_generic": "خطأ",
+            "error_generic_desc": "حدث خطأ أثناء حفظ الفاتورة."
         }
     }
 }

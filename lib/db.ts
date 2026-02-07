@@ -80,6 +80,7 @@ export class FabriSysDatabase extends Dexie {
     items!: Table<Item>;
     variants!: Table<Variant>;
     suppliers!: Table<Supplier>;
+    invoices!: Table<Invoice>;
 
     constructor() {
         super('FabriSysDB');
@@ -87,9 +88,23 @@ export class FabriSysDatabase extends Dexie {
             warehouses: '++id, name, code, location, *categories, isActive',
             items: '++id, warehouseId, name, sku, category',
             variants: '++id, itemId, warehouseId',
-            suppliers: '++id, name, status, phone, *supplyCategories, *paymentMethods'
+            suppliers: '++id, name, status, phone, *supplyCategories, *paymentMethods',
+            invoices: '++id, invoiceNumber, supplierId, status, paymentMethod, date'
         });
     }
+}
+
+export interface Invoice {
+    id?: number;
+    invoiceNumber: string;
+    supplierId: number; // Link to Supplier
+    amount: number;
+    paymentMethod: string; // 'cash', 'check', 'credit', etc.
+    status: 'paid' | 'credit' | 'cancelled';
+    date: Date;
+    notes?: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export const db = new FabriSysDatabase();

@@ -1,16 +1,19 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from 'next-intl/server';
+import InvoicesContent from '@/components/invoices/invoices-content';
 
-export default function InvoicesPage() {
-    const t = useTranslations('Navigation');
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+    const params = await props.params;
+    const { locale } = params;
 
+    const t = await getTranslations({ locale, namespace: 'Invoices' });
+
+    return {
+        title: t('title')
+    };
+}
+
+export default async function InvoicesPage() {
     return (
-        <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-bold tracking-tight">{t('invoices')}</h2>
-            </div>
-            <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6">
-                <p className="text-muted-foreground">Invoices & Billing Module - Coming Soon</p>
-            </div>
-        </div>
+        <InvoicesContent />
     );
 }

@@ -31,6 +31,7 @@
         "inventory": "Inventory",
         "suppliers": "Suppliers",
         "invoices": "Invoices",
+        "users": "Users",
         "statistics": "Statistics",
         "developed_by": "Developed by",
         "version": "Version",
@@ -240,6 +241,79 @@
             "delete_dialog_title": "Are you absolutely sure?",
             "delete_dialog_desc": "This action cannot be undone. This will permanently delete the supplier and remove their data from our servers.",
             "confirm_delete": "Yes, delete supplier"
+        }
+    },
+    "Invoices": {
+        "title": "Invoices Management",
+        "add_invoice": "Add New Invoice",
+        "total_invoices": "Total Invoices",
+        "total_amount": "Total Amount",
+        "paid_invoices": "Paid Invoices",
+        "credit_invoices": "Credit Invoices",
+        "form": {
+            "invoice_number": "Invoice Number",
+            "supplier": "Supplier",
+            "amount": "Amount",
+            "payment_method": "Payment Method",
+            "status": "Status",
+            "date": "Invoice Date",
+            "notes": "Notes",
+            "save": "Save Invoice",
+            "cancel": "Cancel",
+            "select_supplier": "Select supplier",
+            "search_supplier": "Search supplier...",
+            "no_supplier_found": "No supplier found.",
+            "select_payment_method": "Select payment method",
+            "select_status": "Select status",
+            "placeholder_invoice_number": "Enter invoice number (e.g. INV-001)",
+            "placeholder_amount": "0.00",
+            "placeholder_notes": "Any additional notes..."
+        },
+        "stats": {
+            "total_invoices": "Total Invoices",
+            "total_amount": "Total Amount",
+            "paid_invoices": "Paid Invoices",
+            "credit_invoices": "Credit Invoices"
+        },
+        "toolbar": {
+            "search_placeholder": "Search by invoice # or supplier...",
+            "filter_all": "All Statuses",
+            "sort_newest": "Newest",
+            "sort_oldest": "Oldest"
+        },
+        "status": {
+            "paid": "Paid",
+            "credit": "Credit",
+            "cancelled": "Cancelled"
+        },
+        "payment_methods": {
+            "cash": "Cash",
+            "check": "Check",
+            "bank_transfer": "Bank Transfer",
+            "credit": "Credit"
+        },
+        "table": {
+            "invoice_number": "Invoice #",
+            "amount": "Amount",
+            "supplier": "Supplier",
+            "status": "Status",
+            "date": "Date",
+            "actions": "Actions",
+            "no_invoices": "No invoices found yet."
+        },
+        "actions_menu": "Actions",
+        "copy_number": "Copy invoice number",
+        "view_details": "View details",
+        "delete_invoice": "Delete invoice",
+        "delete_confirm_title": "Are you sure?",
+        "delete_confirm_desc": "This action cannot be undone. This will permanently delete the invoice.",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "messages": {
+            "added_success": "Invoice Added",
+            "added_success_desc": "The invoice has been successfully saved to the system.",
+            "error_generic": "Error",
+            "error_generic_desc": "An error occurred while saving the invoice."
         }
     }
 }
