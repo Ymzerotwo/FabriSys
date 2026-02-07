@@ -14,8 +14,8 @@ import {
     ChevronLeft,
     ChevronRight,
     Menu,
-    NotebookPen,
-    UserCog
+    UserCog,
+    ShoppingCart
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -45,6 +45,12 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
             title: t('suppliers'),
             href: "/suppliers",
             icon: Users,
+            variant: "ghost",
+        },
+        {
+            title: t('orders'),
+            href: "/orders",
+            icon: ShoppingCart,
             variant: "ghost",
         },
         {
@@ -160,6 +166,7 @@ export function MobileSidebarTrigger() {
         { title: t('dashboard'), href: "/dashboard", icon: LayoutDashboard },
         { title: t('inventory'), href: "/inventory", icon: Package },
         { title: t('suppliers'), href: "/suppliers", icon: Users },
+        { title: t('orders'), href: "/orders", icon: ShoppingCart },
         { title: t('invoices'), href: "/invoices", icon: FileText },
         { title: t('users'), href: "/users", icon: UserCog },
         { title: t('statistics'), href: "/statistics", icon: BarChart3 },
