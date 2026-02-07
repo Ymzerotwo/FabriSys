@@ -315,5 +315,63 @@
             "error_generic": "خطأ",
             "error_generic_desc": "حدث خطأ أثناء حفظ الفاتورة."
         }
+    },
+    "Users": {
+        "title": "إدارة المستخدمين",
+        "add_user": "إضافة مستخدم جديد",
+        "form": {
+            "username": "اسم المستخدم",
+            "password": "كلمة المرور",
+            "display_name": "الاسم المعروض",
+            "role": "الصلاحية",
+            "status": "الحالة",
+            "profile_image": "صورة الملف الشخصي",
+            "save": "حفظ المستخدم",
+            "cancel": "إلغاء",
+            "placeholder_username": "مثال: AhmedAli",
+            "placeholder_display_name": "مثال: أحمد علي",
+            "select_role": "اختر الصلاحية",
+            "select_status": "اختر الحالة"
+        },
+        "roles": {
+            "admin": "مدير",
+            "user": "مستخدم"
+        },
+        "status": {
+            "active": "نشط",
+            "blocked": "محظور"
+        },
+        "actions": {
+            "edit": "تعديل",
+            "delete": "حذف المستخدم",
+            "block": "حظر المستخدم",
+            "unblock": "فك الحظر",
+            "copy_username": "نسخ اسم المستخدم"
+        },
+        "messages": {
+            "added_success": "تم إضافة المستخدم",
+            "added_success_desc": "تم إنشاء حساب المستخدم بنجاح.",
+            "updated_success": "تم تحديث المستخدم",
+            "desc_updated": "تم تحديث بيانات المستخدم بنجاح.",
+            "deleted_success": "تم حذف المستخدم",
+            "desc_deleted": "تم حذف حساب المستخدم نهائياً.",
+            "status_changed": "تغيير الحالة",
+            "desc_status_changed": "تم تحديث حالة المستخدم.",
+            "confirm_delete_title": "حذف المستخدم؟",
+            "confirm_delete_desc": "هذا الإجراء لا يمكن التراجع عنه. سيتم فقدان جميع البيانات المرتبطة بهذا المستخدم."
+        },
+        "stats": {
+            "total_users": "إجمالي المستخدمين",
+            "active_users": "مستخدمين نشطين",
+            "blocked_users": "مستخدمين محظورين",
+            "admins": "مشرفين"
+        },
+        "toolbar": {
+            "search_placeholder": "بحث عن مستخدم...",
+            "filter_all": "الكل",
+            "sort_newest": "الأحدث",
+            "sort_oldest": "الأقدم",
+            "no_users": "لا يوجد مستخدمين"
+        }
     }
 }

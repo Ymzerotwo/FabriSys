@@ -315,5 +315,63 @@
             "error_generic": "Error",
             "error_generic_desc": "An error occurred while saving the invoice."
         }
+    },
+    "Users": {
+        "title": "User Management",
+        "add_user": "Add New User",
+        "form": {
+            "username": "Username",
+            "password": "Password",
+            "display_name": "Display Name",
+            "role": "Role",
+            "status": "Status",
+            "profile_image": "Profile Image",
+            "save": "Save User",
+            "cancel": "Cancel",
+            "placeholder_username": "e.g. jdoe",
+            "placeholder_display_name": "e.g. John Doe",
+            "select_role": "Select Role",
+            "select_status": "Select Status"
+        },
+        "roles": {
+            "admin": "Admin",
+            "user": "User"
+        },
+        "status": {
+            "active": "Active",
+            "blocked": "Blocked"
+        },
+        "actions": {
+            "edit": "Edit User",
+            "delete": "Delete User",
+            "block": "Block User",
+            "unblock": "Unblock User",
+            "copy_username": "Copy Username"
+        },
+        "messages": {
+            "added_success": "User Added",
+            "added_success_desc": "User account created successfully.",
+            "updated_success": "User Updated",
+            "desc_updated": "User details updated successfully.",
+            "deleted_success": "User Deleted",
+            "desc_deleted": "User account has been permanently removed.",
+            "status_changed": "Status Changed",
+            "desc_status_changed": "User status has been updated.",
+            "confirm_delete_title": "Delete User?",
+            "confirm_delete_desc": "This action cannot be undone. All data associated with this user will be lost."
+        },
+        "stats": {
+            "total_users": "Total Users",
+            "active_users": "Active Users",
+            "blocked_users": "Blocked Users",
+            "admins": "Admins"
+        },
+        "toolbar": {
+            "search_placeholder": "Search users...",
+            "filter_all": "All Roles",
+            "sort_newest": "Newest",
+            "sort_oldest": "Oldest",
+            "no_users": "No users found"
+        }
     }
 }

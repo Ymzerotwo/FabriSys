@@ -1,19 +1,19 @@
+import { getTranslations } from 'next-intl/server';
+import UsersContent from '@/components/users/users-content';
 
-import { useTranslations } from "next-intl";
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }) {
+    const params = await props.params;
+    const { locale } = params;
 
-export default function UsersPage() {
-    const t = useTranslations('Navigation');
+    const t = await getTranslations({ locale, namespace: 'Users' });
 
+    return {
+        title: t('title')
+    };
+}
+
+export default async function UsersPage() {
     return (
-        <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-bold tracking-tight">{t('users')}</h2>
-            </div>
-
-            <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-12 text-center">
-                <h3 className="text-lg font-semibold mb-2">Users Management</h3>
-                <p className="text-muted-foreground">Manage system users, roles, and permissions - Coming Soon</p>
-            </div>
-        </div>
+        <UsersContent />
     );
 }

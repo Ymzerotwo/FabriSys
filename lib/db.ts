@@ -75,21 +75,35 @@ export interface Supplier {
     updatedAt: Date;
 }
 
+export interface User {
+    id?: number;
+    username: string;
+    password?: string;
+    displayName: string;
+    role: 'admin' | 'user';
+    status: 'active' | 'blocked';
+    profileImage?: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 export class FabriSysDatabase extends Dexie {
     warehouses!: Table<Warehouse>;
     items!: Table<Item>;
     variants!: Table<Variant>;
     suppliers!: Table<Supplier>;
     invoices!: Table<Invoice>;
+    users!: Table<User>;
 
     constructor() {
         super('FabriSysDB');
-        this.version(7).stores({
+        this.version(8).stores({
             warehouses: '++id, name, code, location, *categories, isActive',
             items: '++id, warehouseId, name, sku, category',
             variants: '++id, itemId, warehouseId',
             suppliers: '++id, name, status, phone, *supplyCategories, *paymentMethods',
-            invoices: '++id, invoiceNumber, supplierId, status, paymentMethod, date'
+            invoices: '++id, invoiceNumber, supplierId, status, paymentMethod, date',
+            users: '++id, username, role, status'
         });
     }
 }
