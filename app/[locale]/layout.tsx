@@ -28,6 +28,7 @@ import { ModeToggle } from '@/components/ui/mode-toggle';
 import { UserNav } from '@/components/user-nav';
 import { LanguageToggle } from '@/components/language-toggle';
 import { Toaster } from "@/components/ui/toaster"
+import { NotificationsNav } from '@/components/notifications-nav';
 
 export default async function RootLayout({
   children,
@@ -66,6 +67,7 @@ export default async function RootLayout({
                   <MobileSidebarTrigger />
 
                   <div className="flex items-center gap-4 ms-auto">
+                    <NotificationsNav />
                     <LanguageToggle />
                     <ModeToggle />
                     <UserNav />

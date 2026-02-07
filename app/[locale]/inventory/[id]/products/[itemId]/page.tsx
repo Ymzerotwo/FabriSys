@@ -4,8 +4,8 @@ import { use } from "react"
 import { useTranslations } from "next-intl"
 import { useLiveQuery } from "dexie-react-hooks"
 import { db } from "@/lib/db"
-import { notFound, useRouter } from "next/navigation"
-import { ArrowLeft, Package, ScrollText, Plus, AlertTriangle } from "lucide-react"
+import { notFound } from "next/navigation"
+import { ArrowLeft, Package, ScrollText, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { Badge } from "@/components/ui/badge"
@@ -19,7 +19,7 @@ export default function ItemDetailsPage({
 }) {
     const { id: warehouseIdStr, itemId: itemIdStr } = use(params)
     const t = useTranslations("Inventory")
-    const router = useRouter()
+
 
     const warehouseId = parseInt(warehouseIdStr)
     const itemId = parseInt(itemIdStr)

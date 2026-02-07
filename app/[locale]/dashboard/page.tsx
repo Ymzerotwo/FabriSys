@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 
 export default function DashboardPage() {
     const t = useTranslations('Navigation');
-    const home = useTranslations('HomePage');
+
 
     return (
         <div className="space-y-6">
