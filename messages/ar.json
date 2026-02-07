@@ -26,10 +26,16 @@
         "fabrisys": "FabriSys",
         "footer": "© {year} FabriSys. جميع الحقوق محفوظة."
     },
+    "Notifications": {
+        "title": "الإشعارات",
+        "empty": "لا توجد إشعارات جديدة",
+        "unread": "لديك {count} إشعار غير مقروء"
+    },
     "Navigation": {
         "dashboard": "لوحة التحكم",
         "inventory": "المخازن",
         "suppliers": "الموردين",
+        "orders": "الطلبات",
         "invoices": "الفواتير",
         "users": "المستخدمين",
         "statistics": "الإحصائيات",

@@ -26,10 +26,16 @@
         "fabrisys": "FabriSys",
         "footer": "© {year} FabriSys. All rights reserved."
     },
+    "Notifications": {
+        "title": "Notifications",
+        "empty": "No new notifications",
+        "unread": "You have {count} unread messages"
+    },
     "Navigation": {
         "dashboard": "Dashboard",
         "inventory": "Inventory",
         "suppliers": "Suppliers",
+        "orders": "Orders",
         "invoices": "Invoices",
         "users": "Users",
         "statistics": "Statistics",
